@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ferrari Tyre Predictor</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <div class="overlay">
+      <header class="hero">
+        <div class="brand-row">
+          
+          <div>
+            <h1> Tyre Predictor</h1>
+            <p class="subtitle" style="background:rgb(74, 29, 29); border-radius: 8px;">Enter lap & session data — we keep Charles  on the right rubber this time 🏁</p>
+          </div>
+        </div>
+      </header>
+
+      <main class="container">
+        {% if error %}
+          <div class="alert error">{{ error }}</div>
+        {% endif %}
+        {% if result %}
+          <div class="alert success">Prediction: <strong>{{ result | upper }}</strong> (prob {{ prob }}) <span style="margin-left:12px" class="tyre-spin spin" aria-hidden></span></div>
+        {% endif %}
+
+        <div class="fun-row">
+          <div class="hint-pill">Bahrain GP Mode: <strong>Same Conditions</strong></div>
+          <div style="color:#ccc;font-size:13px">Tip: use seconds & km/h like training set</div>
+        </div>
+
+        <form action="/predict" method="post" class="form-grid">
+          {% for col in ['lap_time_s','s1_s','s2_s','s3_s','tyre_life','position','prev_position','avg_speed','max_speed','std_speed','avg_throttle','avg_brake','session_time_sec','stint','overtakes'] %}
+            <label>{{ col.replace('_',' ').title() }}
+              <input name="{{ col }}" required placeholder="Enter {{ col }}" />
+            </label>
+          {% endfor %}
+
+          <label>Pit In
+            <select name="pit_in">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+
+          <label>Pit Out
+            <select name="pit_out">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn">Predict</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+
+        <section class="hint">
+          <h3>Notes</h3>
+          <ul>
+            <li>Numeric inputs should use the same units as used during training (seconds, km/h).</li>
+            <li>Made to stop Ferrari pit-wall roulette -hopefully 😄</li>
+            <li>2026 is our year😭 </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">© Scuderia - Minimal demo</footer>
+    </div>
+
+    <script>
+      (function(){
+        const success = document.querySelector('.alert.success');
+        if(!success) return;
+        const text = success.textContent || '';
+        if(text.toLowerCase().includes('hard')){
+          let flashes = 0;
+          const iv = setInterval(()=>{
+            document.body.style.filter = (flashes % 2 === 0) ? 'hue-rotate(15deg)' : '';
+            flashes++;
+            if(flashes>6){ clearInterval(iv); document.body.style.filter=''; }
+          }, 180);
+        }
+      })();
+    </script>
+  </body>
+</html>

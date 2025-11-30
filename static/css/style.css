@@ -1,0 +1,66 @@
+:root{
+  --ferrari-red:#DC0000;
+  --ferrari-yellow:#FFD100;
+  --bg-dark:rgba(5,5,5,0.6);
+  --card:rgba(17,17,17,0.85);
+  --muted:#e6e6e6;
+}
+
+html,body{height:100%;margin:0}
+body{
+  font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;
+  color:var(--muted);
+  background-image:url('https://i.ytimg.com/vi/-aTVjkf9qwA/maxresdefault.jpg');
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+}
+
+.overlay{
+  min-height:100%;
+  background:linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.75));
+  padding:28px 12px 60px;
+  box-sizing:border-box;
+}
+
+.hero{max-width:1100px;margin:0 auto;text-align:center;padding:28px 12px}
+.brand-row{display:flex;align-items:center;justify-content:center;gap:14px}
+.badge{
+  width:78px;height:78px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--ferrari-red),#ff5a5a);
+  box-shadow:0 6px 18px rgba(0,0,0,0.6);
+  border:2px solid rgba(255,255,255,0.06)
+}
+.badge h2{margin:0;color:white;font-size:18px;letter-spacing:1px}
+h1{margin:6px 0 0;font-size:34px}
+.subtitle{margin-top:8px;font-size:15px;color:var(--muted)}
+
+.container{max-width:1100px;margin:22px auto;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.7)}
+.fun-row{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px}
+.hint-pill{background:linear-gradient(90deg,rgba(255,209,0,0.12),rgba(220,0,0,0.08));padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
+
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+label{display:flex;flex-direction:column;font-size:13px;color:var(--muted)}
+input,select{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:rgba(10,10,10,0.5);color:var(--muted)}
+input::placeholder{color:#999}
+
+.form-actions{grid-column:1 / -1;display:flex;gap:8px;justify-content:center}
+.btn{background:var(--ferrari-red);color:white;padding:12px 18px;border-radius:12px;border:none;cursor:pointer;font-weight:700;letter-spacing:0.6px}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(220,0,0,0.18)}
+.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+.alert{padding:12px;border-radius:10px;margin-bottom:12px}
+.alert.error{background:#3b0b0b;color:#ffd6d6}
+.alert.success{background:#083b17;color:#bfffd6}
+
+.hint{margin-top:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;border-radius:8px;color:#ddd}
+
+.footer{text-align:center;padding:10px;font-size:12px;color:#bbb;margin-top:14px}
+
+.tyre-spin{display:inline-block;width:44px;height:44px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#222 0 20%,#111 21% 55%,#222 56% 100%);position:relative}
+.tyre-spin::after{content:'';position:absolute;left:11px;top:11px;width:22px;height:22px;border-radius:50%;background:conic-gradient(#444,#111);}
+.spin{animation:spin 1.6s linear infinite}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+@media(max-width:600px){h1{font-size:22px}.hero{padding:18px}}
