@@ -2,6 +2,7 @@ Flask
 gunicorn
 numpy
 pandas
-scikit-learn
+scikit-learn==1.7.1
 tensorflow-cpu
-joblib
+pickle-mixin
+
